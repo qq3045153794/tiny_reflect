@@ -2,13 +2,17 @@
 
 #include <reflect/RegesterClass.h>
 #include <iostream>
+#include <reflect/Object.h>
 
-class A {
+namespace reflect {
+class A :public Object{
 public:
   int a;
-  void show() {std::cout << "A" << std::endl;}
+  virtual void show() override {std::cout << "A" << std::endl;}
+  virtual void get() override {}
+  virtual void set() override {}
 
 };
 
 REGESTER_CLASS(A);
-
+}

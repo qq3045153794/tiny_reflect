@@ -4,18 +4,19 @@
 #include <string>
 #include <map>
 #include <unordered_map>
+#include <reflect/Object.h>
 
 namespace reflect {
 
-typedef void* (*RegesteFunc) (void);
+typedef Object* (*RegesteFunc) (void);
 
 class ClassFactory {
 public:
   static ClassFactory& instand();
-  template<typename T>
-  T* create_class(const std::string& class_name);
+  Object* create_class(const std::string& class_name);
 
   void regester_class(const std::string& class_name, RegesteFunc reg_func);
+  void get(const std::string& class_name, const std::string& value_name);
 private:
 
   std::unordered_map<std::string, RegesteFunc> class_dictionary;
@@ -28,15 +29,6 @@ private:
 };
 
 
-template<typename T>
-T* ClassFactory::create_class(const std::string& class_name) {
-  if (class_dictionary.count(class_name) > 0){
-    auto& reg_func = class_dictionary.at(class_name);
-    return static_cast<T*>(reg_func());
-  }
-
-  return nullptr;
-}
 
 }
 #endif

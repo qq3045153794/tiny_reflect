@@ -16,8 +16,8 @@ public:
 }
 
 #define REGESTER_CLASS(CLASS_NAME) \
-  void* regester_##CLASS_NAME() { \
-    void* object = new CLASS_NAME(); \
+  Object* regester_##CLASS_NAME() { \
+    Object* object = new CLASS_NAME(); \
     return object; \
   } \
   reflect::RegesterClass RegesterClass##CLASS_NAME(#CLASS_NAME, regester_##CLASS_NAME)
