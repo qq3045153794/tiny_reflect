@@ -6,6 +6,7 @@ namespace reflect {
 
 class ClassField {
 public:
+  // ClassField(): m_name(""), m_type(""), m_offset(0) {};
   ClassField() = default;
   ClassField(const std::string& name, const std::string& type, std::size_t offset);
   const std::string& name() const;
